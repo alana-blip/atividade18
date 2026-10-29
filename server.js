@@ -22,13 +22,11 @@ app.get('/api/buscar', async (req, res) => {
     const astroAlvo = astro.trim().toLowerCase();
 
     try {
-        // Endpoint e intervalo exatos do código de referência
         const url = `https://science.nasa.gov/wp-json/wp/v2/apod-basic/?api_key=${apiKey}&start_date=2026-08-01&end_date=2026-10-27`;
         
         const response = await axios.get(url);
         const data = Array.isArray(response.data) ? response.data : [response.data];
 
-        // Lógica de filtragem idêntica à do código fornecido
         const imagensFiltradas = data.filter(item => {
             const ehImagem = item.media_type === 'image';
 
@@ -59,7 +57,6 @@ app.get('/api/buscar', async (req, res) => {
     }
 });
 
-// Front-end integrado ajustado para carrossel em faixa (carouselTrack)
 app.get('/', (req, res) => {
     res.send(`
         <!DOCTYPE html>
